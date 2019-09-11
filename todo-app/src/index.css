@@ -1,0 +1,10 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: '#e9cef'; /* 회색 */
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
