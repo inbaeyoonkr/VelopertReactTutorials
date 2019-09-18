@@ -10,7 +10,7 @@ const Profiles = () => {
           <Link to='/profiles/velopert'>Velopert 소개</Link>
         </li>
         <li>
-          <Link to='/profiles/inbaeyoonn'>InbaeYoon 소개</Link>
+          <Link to='/profiles/inbaeyoon'>InbaeYoon 소개</Link>
         </li>
       </ul>
 

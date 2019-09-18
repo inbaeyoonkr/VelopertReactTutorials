@@ -17,6 +17,7 @@ const Profile = ({ match }) => {
   if (!username) {
     return <div>존재하지 않는 사용자 입니다.</div>;
   }
+
   return (
     <div>
       <h3>
