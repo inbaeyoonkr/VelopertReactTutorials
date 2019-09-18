@@ -1,7 +1,12 @@
 import React from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Link, Route, NavLink } from 'react-router-dom';
 import Profile from './Profile';
 import WithRouterSample from './WithRouterSample';
+
+const activeStyle = {
+  background: 'black',
+  color: 'white'
+};
 
 const Profiles = () => {
   return (
@@ -9,10 +14,14 @@ const Profiles = () => {
       <h3>사용자 목록</h3>
       <ul>
         <li>
-          <Link to='/profiles/velopert'>Velopert 소개</Link>
+          <NavLink activeStyle={activeStyle} to='/profiles/velopert'>
+            Velopert 소개
+          </NavLink>
         </li>
         <li>
-          <Link to='/profiles/inbaeyoon'>InbaeYoon 소개</Link>
+          <NavLink activeStyle={activeStyle} to='/profiles/inbaeyoon'>
+            InbaeYoon 소개
+          </NavLink>
         </li>
       </ul>
 
