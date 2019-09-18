@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link, Route } from 'react-router-dom';
 
+import WithRouterSample from './WithRouterSample';
 const data = {
   inbaeyoon: {
     name: '윤인배',
@@ -24,6 +24,7 @@ const Profile = ({ match }) => {
         {username} ({data[username].name})
       </h3>
       <p>{data[username].description}</p>
+      <WithRouterSample />
     </div>
   );
 };
