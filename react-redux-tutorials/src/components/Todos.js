@@ -9,7 +9,9 @@ const TodoItem = ({ todo, onToggle, onRemove }) => {
         checked={todo.done}
         readOnly={true}
       />
-      <span>예제 텍스트</span>
+      <span style={{ textDecoration: todo.done ? 'line-through' : 'none' }}>
+        {todo.text}
+      </span>
       <button onClick={() => onRemove(todo.id)}>삭제</button>
     </div>
   );
