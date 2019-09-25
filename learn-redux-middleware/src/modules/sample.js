@@ -17,10 +17,6 @@ export const getUsers = createRequestChunk(GET_USERS, api.getUsers);
 
 // 초기 상태를 설정
 const initialState = {
-  loading: {
-    GET_POST: false,
-    GET_USERS: false
-  },
   post: null,
   users: null
 };

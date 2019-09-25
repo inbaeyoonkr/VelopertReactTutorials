@@ -7,21 +7,21 @@ export default function createRequestChunk(type, request) {
 
   return params => async dispatch => {
     dispatch({ type }); // 요청을 시작한 것을 알림
-    dispatch(startLoading({ type }));
+    dispatch(startLoading(type));
     try {
       const response = await request(params);
       dispatch({
         type: SUCCESS,
         payload: response.data
       }); // 요청 성공
-      dispatch(finishLoading({ type }));
+      dispatch(finishLoading(type));
     } catch (e) {
       dispatch({
         type: FAILURE,
         payload: e,
         error: true
       }); // 에러 발생
-      dispatch(startLoading({ type }));
+      dispatch(finishLoading(type));
       throw e;
     }
   };
