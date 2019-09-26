@@ -1,6 +1,6 @@
 import { startLoading, finishLoading } from '../modules/loading';
 
-export default function createRequestChunk(type, request) {
+export default function createRequestThunk(type, request) {
   // 성공 및 실패 액션 타입을 정의해주자
   const SUCCESS = `${type}_SUCCESS`;
   const FAILURE = `${type}_FAILURE`;
@@ -27,4 +27,4 @@ export default function createRequestChunk(type, request) {
   };
 }
 
-// 사용법 : createRequestChunk('GET_USERS', api.getUsers)
+// 사용법 : createRequestThunk('GET_USERS', api.getUsers)
