@@ -13,6 +13,7 @@ function App() {
   const onClick = () => {
     setVisible(!visible);
   };
+
   const onMouseOver = () => {
     SplitMe.preload();
   };
