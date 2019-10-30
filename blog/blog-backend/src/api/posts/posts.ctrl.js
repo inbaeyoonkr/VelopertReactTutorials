@@ -11,7 +11,7 @@ export const getPostById = async (ctx, next) => {
     return;
   }
   try {
-    const post = await Post.findById(id);
+    const post = await Post.findById(id); // post는 BSON 형태다.
     // 포스트가 존재하지 않을 때
     if (!post) {
       ctx.status = 404; // Not Found
@@ -75,14 +75,23 @@ export const write = async ctx => {
 };
 
 /*
-GET /api/posts
+GET /api/posts?username=&tags=&page=
 */
 export const list = async ctx => {
+  // query는 문자열이기 때문에 숫자로 변환해 줘야 한다
+  // 값이 주어지지 않으면 1로 한다.
   const page = parseInt(ctx.query.page || '1', 10);
   if (page < 1) {
     ctx.status = 400;
     return;
   }
+
+  const { tage, username } = ctx.query;
+  // tag, username 값이 유효하면 객체 안에 넣고, 그렇지 않으면 넣지 않는다.
+  const query = {
+    ...(username ? { 'user.username': username } : {}),
+    ...(tag ? { tags: tag } : {})
+  };
 
   try {
     const posts = await Post.find()
@@ -92,7 +101,7 @@ export const list = async ctx => {
       .lean()
       .exec();
 
-    const postCount = await Post.countDocuments().exec();
+    const postCount = await Post.countDocuments(query).exec();
     ctx.set('Last-Page', Math.ceil(postCount / 10));
     ctx.body = posts.map(post => ({
       ...post,
