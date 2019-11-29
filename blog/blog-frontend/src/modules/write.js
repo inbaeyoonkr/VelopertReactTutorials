@@ -7,7 +7,11 @@ import * as postAPI from '../lib/api/post';
 
 const INITIALIZE = 'write/INITIALIZE'; // 모든 내용 초기화
 const CHANGE_FIELD = 'write/CHANGE_FIELD'; // 특정 key 값 바꾸기
-const [WRITE_POST, WRITE_POST_SUCCESS, WRITE_POST_FAILURE] = 'write/WRITE_POST'; // 포스터 작성
+const [
+  WRITE_POST,
+  WRITE_POST_SUCCESS,
+  WRITE_POST_FAILURE,
+] = createRequestActionTypes('write/WRITE_POST'); // 포스터 작성
 
 export const initialize = createAction(INITIALIZE);
 export const changeField = createAction(CHANGE_FIELD, ({ key, value }) => ({
