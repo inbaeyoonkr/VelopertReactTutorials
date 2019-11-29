@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Responsive from '../common/Responsive';
 import Button from '../common/Button';
@@ -38,32 +39,47 @@ const PostItemBlock = styled.div`
   }
 `;
 
-const PostItem = () => {
+const PostItem = ({ post }) => {
+  const { title, user, tags, publishedDate, body, _id } = post;
   return (
     <PostItemBlock>
-      <h2>제목</h2>
+      <h2>
+        <Link to={`/@${user.username}/${_id}`}>{title}</Link>
+      </h2>
       <SubInfo
-        username="username"
-        publishedDate={new Date().toLocaleDateString()}
+        username={user.username}
+        publishedDate={new Date(publishedDate).toLocaleDateString()}
       />
-      <Tags tags={['태그1', '태그2', '태그3']} />
-      <p>포스트 내용의 일부분...</p>
+      <Tags tags={tags} />
+      <p>{body}</p>
     </PostItemBlock>
   );
 };
 
-const PostList = () => {
+const PostList = ({ posts, error, loading, showWriteButton }) => {
+  // 에러 처리
+  if (error) {
+    return <PostListBlock>에러가 발생했습니다.</PostListBlock>;
+  }
+
   return (
     <PostListBlock>
       <WritePostButtonWrapper>
-        <Button cyan to="/write">
-          새 글 작성하기
-        </Button>
+        {showWriteButton && (
+          <Button cyan to="/write">
+            새 글 작성하기
+          </Button>
+        )}
       </WritePostButtonWrapper>
+      {/* 로딩 중이 아니고, 포스트 배열이 존재할 때 보여줌 */}
       <div>
-        <PostItem />
-        <PostItem />
-        <PostItem />
+        {!loading && posts && (
+          <div>
+            {posts.map(post => (
+              <PostItem post={post} key={post._id} />
+            ))}
+          </div>
+        )}
       </div>
     </PostListBlock>
   );
