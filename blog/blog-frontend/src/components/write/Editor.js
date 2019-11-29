@@ -4,8 +4,6 @@ import Quill from 'quill';
 import 'quill/dist/quill.bubble.css';
 import Responsive from '../common/Responsive';
 import palette from '../../lib/styles/palette';
-import TagBox from './TagBox';
-import WriteActionButtons from './WriteActionButtons';
 
 const EditorBlock = styled(Responsive)`
   /* 페이지 위아래 여백 지정 */
@@ -58,9 +56,9 @@ const Editor = () => {
   return (
     <EditorBlock>
       <TitleInput placeholder="제목을 입력하세요" />
-      <QuillWrapper ref={quillElement} />
-      <TagBox />
-      <WriteActionButtons />
+      <QuillWrapper>
+        <div ref={quillElement} />
+      </QuillWrapper>
     </EditorBlock>
   );
 };
