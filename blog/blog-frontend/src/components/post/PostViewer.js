@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import Responsive from '../common/Responsive';
-
+import SubInfo from '../common/SubInfo';
+import Tags from '../common/Tags';
 import palette from '../../lib/styles/palette';
 
 const PostViewerBlock = styled(Responsive)`
@@ -19,30 +20,6 @@ const PostHead = styled.div`
   }
 `;
 
-const SubInfo = styled.div`
-  margin-top: 1rem;
-  color: ${palette.gray[6]};
-
-  /* span 사이에 가운뎃점 보여주기 */
-  span + span:before {
-    color: ${palette.gray[5]};
-    margin-left: 0.25rem;
-    margin-right: 0.25rem;
-    content: '\\B7'; /* 가운뎃점 문자 */
-  }
-`;
-const Tags = styled.div`
-  margin-top: 0.5rem;
-  .tag {
-    display: inline-block;
-    color: ${palette.cyan[7]};
-    text-decoration: none;
-    margin-right: 0.5rem;
-    &:hover {
-      color: ${palette.cyan[6]};
-    }
-  }
-`;
 const PostContent = styled.div`
   font-size: 1.3125rem;
   color: ${palette.gray[8]};
@@ -63,17 +40,12 @@ const PostViewer = ({ post, error, loading }) => {
     <PostViewerBlock>
       <PostHead>
         <h1>{title}</h1>
-        <SubInfo>
-          <span>
-            <b>{user.username}</b>
-          </span>
-          <span>{new Date(publishedDate).toLocaleDateString()}</span>
-        </SubInfo>
-        <Tags>
-          {tags.map(tag => (
-            <div className="tag">#{tag}</div>
-          ))}
-        </Tags>
+        <SubInfo
+          username={user.username}
+          publishedDate={new Date(publishedDate).toLocaleDateString()}
+          hasMarginTop
+        />
+        <Tags tags={tags} />
       </PostHead>
       <PostContent dangerouslySetInnerHTML={{ __html: body }}></PostContent>
     </PostViewerBlock>
