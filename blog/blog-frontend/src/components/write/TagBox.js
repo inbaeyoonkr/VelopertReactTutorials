@@ -110,6 +110,7 @@ const TagBox = ({ tags, onChangeTags }) => {
     [localTags, onChangeTags],
   );
 
+  // props로 받아온 tags의 값이 변할 때
   useEffect(() => {
     setLocalTags(tags);
   }, [tags]);
