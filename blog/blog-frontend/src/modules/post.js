@@ -3,7 +3,7 @@ import { takeLatest } from 'redux-saga/effects';
 import createRequestSaga, {
   createRequestActionTypes,
 } from '../lib/createRequestSaga';
-import * as postAPI from '../lib/api/post';
+import * as postAPI from '../lib/api/posts';
 
 const [
   READ_POST,
