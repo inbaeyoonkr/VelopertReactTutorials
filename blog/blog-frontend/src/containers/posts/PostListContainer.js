@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 import qs from 'qs';
+import { withRouter } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import PostList from '../../components/posts/PostList';
 import { listPosts } from '../../modules/posts';
 
@@ -15,19 +15,18 @@ const PostListContainer = ({ location }) => {
       user: user.user,
     }),
   );
-
   useEffect(() => {
-    const { username, tag, page } = qs.parse(location.search, {
+    const { tag, username, page } = qs.parse(location.search, {
       ignoreQueryPrefix: true,
     });
-    dispatch(listPosts({ username, tag, page }));
+    dispatch(listPosts({ tag, username, page }));
   }, [dispatch, location.search]);
 
   return (
     <PostList
-      posts={posts}
-      error={error}
       loading={loading}
+      error={error}
+      posts={posts}
       showWriteButton={user}
     />
   );

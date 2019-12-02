@@ -10,7 +10,6 @@ const PaginationBlock = styled.div`
   justify-content: space-between;
   margin-bottom: 3rem;
 `;
-
 const PageNumber = styled.div``;
 
 const buildLink = ({ username, tag, page }) => {

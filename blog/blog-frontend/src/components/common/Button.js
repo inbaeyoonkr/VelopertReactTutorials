@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
+import { Link } from 'react-router-dom';
 import palette from '../../lib/styles/palette';
 
 const buttonStyle = css`
@@ -26,6 +26,7 @@ const buttonStyle = css`
       width: 100%;
       font-size: 1.125rem;
     `}
+
   ${props =>
     props.cyan &&
     css`

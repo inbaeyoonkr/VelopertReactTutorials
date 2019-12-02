@@ -5,7 +5,7 @@ import sanitizeHtml from 'sanitize-html';
 
 const { ObjectId } = mongoose.Types;
 
-const sanitzeOptions = {
+const sanitizeOption = {
   allowedTags: [
     'h1',
     'h2',
@@ -15,8 +15,8 @@ const sanitzeOptions = {
     's',
     'p',
     'ul',
-    'li',
     'ol',
+    'li',
     'blockquote',
     'a',
     'img',
@@ -85,23 +85,20 @@ export const write = async ctx => {
   }
 
   const { title, body, tags } = ctx.request.body;
-
   const post = new Post({
     title,
-    body: sanitizeHtml(body, sanitzeOptions), // sanitizeHtml메소드를 사용하여 필터링
+    body: sanitizeHtml(body, sanitizeOption),
     tags,
     user: ctx.state.user,
   });
   try {
     await post.save();
     ctx.body = post;
-    console.log(post);
   } catch (e) {
     ctx.throw(500, e);
   }
 };
 
-// html을 없애고 내용이 너무 길면 200자로 제한하는 함수
 const removeHtmlAndShorten = body => {
   const filtered = sanitizeHtml(body, {
     allowedTags: [],
@@ -199,7 +196,7 @@ export const update = async ctx => {
   }
 
   try {
-    const post = await Post.findByIdAndUpdate(id, nextData.body, {
+    const post = await Post.findByIdAndUpdate(id, nextData, {
       new: true, // 이 값을 설정하면 업데이트된 데이터를 반환합니다.
       // false 일 때에는 업데이트 되기 전의 데이터를 반환합니다.
     }).exec();

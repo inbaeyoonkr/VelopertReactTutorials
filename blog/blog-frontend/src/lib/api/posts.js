@@ -6,7 +6,11 @@ export const writePost = ({ title, body, tags }) =>
 
 export const readPost = id => client.get(`/api/posts/${id}`);
 
-export const listPosts = ({ username, tag, page }) => {
-  const queryString = qs.stringify({ username, tag, page });
-  return client.get(`/api/posts/${queryString}`);
+export const listPosts = ({ page, username, tag }) => {
+  const queryString = qs.stringify({
+    page,
+    username,
+    tag,
+  });
+  return client.get(`/api/posts?${queryString}`);
 };

@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
+import WriteActionButtons from '../../components/write/WriteActionButtons';
 import { useSelector, useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { writePost } from '../../modules/write';
-import WriteActionButtons from '../../components/write/WriteActionButtons';
 
 const WriteActionButtonsContainer = ({ history }) => {
   const dispatch = useDispatch();
@@ -14,16 +14,23 @@ const WriteActionButtonsContainer = ({ history }) => {
     postError: write.postError,
   }));
 
-  // 포스터 등록
+  // 포스트 등록
   const onPublish = () => {
-    dispatch(writePost({ title, body, tags }));
+    dispatch(
+      writePost({
+        title,
+        body,
+        tags,
+      }),
+    );
   };
 
-  // 포스터 등록 취소
+  // 취소
   const onCancel = () => {
     history.goBack();
   };
-  // 성공 혹은 실패 시 할 작업
+
+  // 성공 혹은 실패시 할 작업
   useEffect(() => {
     if (post) {
       const { _id, user } = post;
@@ -33,7 +40,6 @@ const WriteActionButtonsContainer = ({ history }) => {
       console.log(postError);
     }
   }, [history, post, postError]);
-
   return <WriteActionButtons onPublish={onPublish} onCancel={onCancel} />;
 };
 
