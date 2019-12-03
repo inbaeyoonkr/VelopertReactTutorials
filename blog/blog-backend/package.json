@@ -13,7 +13,8 @@
     "koa": "^2.7.0",
     "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",
-    "mongoose": "^5.5.2",
+    "koa-static": "^5.0.0",
+    "mongoose": "^5.5.5",
     "sanitize-html": "^1.20.1"
   },
   "devDependencies": {
